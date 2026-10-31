@@ -1,0 +1,4 @@
+CREATE TABLE demo_card_service (card_id BIGINT NOT NULL, service_id BIGINT NOT NULL, PRIMARY KEY(card_id, service_id));
+CREATE TABLE demo_service_settlement (grooming_id BIGINT PRIMARY KEY, customer_id BIGINT NOT NULL, base_amount DECIMAL(10,2) NOT NULL, addon_amount DECIMAL(10,2) NOT NULL, amount DECIMAL(10,2) NOT NULL, method VARCHAR(20) NOT NULL, card_id BIGINT, status VARCHAR(20) NOT NULL, operator_name VARCHAR(64) NOT NULL, paid_at TIMESTAMP NOT NULL, refunded_at TIMESTAMP, refund_reason VARCHAR(255));
+CREATE TABLE demo_card_flow (id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY, card_id BIGINT NOT NULL, grooming_id BIGINT NOT NULL, change_times INT NOT NULL, operator_name VARCHAR(64) NOT NULL, created_at TIMESTAMP NOT NULL);
+CREATE TABLE demo_balance_flow (id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY, customer_id BIGINT NOT NULL, grooming_id BIGINT NOT NULL, amount DECIMAL(10,2) NOT NULL, operator_name VARCHAR(64) NOT NULL, created_at TIMESTAMP NOT NULL);

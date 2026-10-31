@@ -1,0 +1,2 @@
+CREATE TABLE demo_inventory_flow (id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY, product_id BIGINT NOT NULL, delta INT NOT NULL, stock_after INT NOT NULL, action VARCHAR(20) NOT NULL, reference_id BIGINT, reason VARCHAR(255) NOT NULL, operator_name VARCHAR(64) NOT NULL, created_at TIMESTAMP NOT NULL);
+CREATE TABLE demo_service_consumption (service_id BIGINT NOT NULL, product_id BIGINT NOT NULL, quantity INT NOT NULL, PRIMARY KEY(service_id,product_id));

@@ -1,0 +1,70 @@
+server:
+  address: 127.0.0.1
+  port: 8000
+  error:
+    include-message: always
+  servlet:
+    session:
+      timeout: 30m
+      cookie:
+        http-only: true
+        same-site: lax
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+spring:
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 6MB
+  application:
+    name: smart-pet-grooming-system
+  flyway:
+    enabled: false
+  sql:
+    init:
+      encoding: UTF-8
+  profiles:
+    default: h2
+  datasource:
+    url: jdbc:h2:mem:pet_grooming;MODE=MySQL;DB_CLOSE_DELAY=-1;DATABASE_TO_UPPER=false
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: ""
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+    default-property-inclusion: always
+
+pet-grooming:
+  media-directory: ${PET_MEDIA_DIRECTORY:./uploads/photos}
+  seed-password: ${PET_SEED_PASSWORD:${PET_GROOMING_DEMO_PASSWORD:petcare123}}
+  seed-enabled: ${PET_SEED_ENABLED:${PET_DEMO_SEED_ENABLED:true}}
+  store:
+    name: "PAW & PURE 爪印轻奢宠护中心（旗舰店）"
+    business-hours: "09:00 - 21:00"
+    buffer-minutes: 15
+    address: "上海市徐汇区武康路 288 号 Apple Park 创意街区 1F"
+    phone: "400-820-8899"
+  payment:
+    # true = 本地演示（可点「模拟扫码」）；配好个人开发者密钥后改 false 走真实支付宝
+    sandbox-enabled: ${PET_PAYMENT_SANDBOX:true}
+    timeout-minutes: 15
+    notify-base-url: ${PET_PAYMENT_NOTIFY_BASE:http://127.0.0.1:8000/api/payment/notify}
+    alipay:
+      # 在 open.alipay.com 个人开发者应用里复制下面三项，直接写在引号中即可
+      app-id: "${PET_ALIPAY_APP_ID:}"
+      private-key: "${PET_ALIPAY_PRIVATE_KEY:}"
+      alipay-public-key: "${PET_ALIPAY_PUBLIC_KEY:}"
+      # 沙箱网关；正式环境改为 https://openapi.alipay.com/gateway.do
+      gateway-url: ${PET_ALIPAY_GATEWAY:https://openapi-sandbox.dl.alipaydev.com/gateway.do}
+
+
+
+

@@ -1,0 +1,1 @@
+ALTER TABLE demo_product ADD COLUMN sale_units INT NOT NULL DEFAULT 1;
